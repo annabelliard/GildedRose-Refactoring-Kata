@@ -1,7 +1,8 @@
 package com.gildedrose
 
-class GildedRose(var items: List<Item>) {
+import com.gildedrose.model.Item
 
+class GildedRose(var items: List<Item>) {
     fun updateQuality() {
         for (i in items.indices) {
             if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {

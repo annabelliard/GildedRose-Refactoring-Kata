@@ -1,5 +1,6 @@
 package com.gildedrose
 
+import com.gildedrose.model.Item
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -59,10 +60,11 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun `Sulfuras never decreases in quality`() {
+    fun `Sulfuras never decreases in quality and is never sold`() {
         val items = listOf(Item("Sulfuras, Hand of Ragnaros", 3, 47))
         val app = GildedRose(items)
         app.updateQuality()
+        assertEquals(3, app.items[0].sellIn)
         assertEquals(47, app.items[0].quality)
     }
 
