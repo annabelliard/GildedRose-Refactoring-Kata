@@ -1,18 +1,17 @@
-package com.gildedrose.update.type
+package com.gildedrose.model.type
 
 import com.gildedrose.config.QualityRequirements
-import com.gildedrose.model.Item
-import com.gildedrose.update.BaseItem
+import com.gildedrose.model.BaseItem
 
-class Sulfuras: BaseItem() {
+class Sulfuras(name: String, sellIn: Int, quality: Int): BaseItem(name, sellIn, quality) {
 
     override val maxQuality = QualityRequirements.MAX_QUALITY_SULFURAS
 
-    override fun updateQuality(item: Item){
+    override fun updateQuality(){
         //Do nothing as Sulfuras is a legendary item that cannot be decreased in quality
     }
 
-    override fun updateSellIn(item: Item){
+    override fun updateSellIn(){
         //Do nothing as Sulfuras is a legendary item that cannot be sold
     }
 }

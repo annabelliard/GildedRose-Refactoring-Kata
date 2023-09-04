@@ -1,34 +1,26 @@
 package com.gildedrose
 
 import com.gildedrose.model.Item
-import com.gildedrose.update.BaseItem
-import com.gildedrose.update.type.AgedBrie
-import com.gildedrose.update.type.BackstagePass
-import com.gildedrose.update.type.Conjured
-import com.gildedrose.update.type.Sulfuras
+import com.gildedrose.model.BaseItem
+import com.gildedrose.model.type.AgedBrie
+import com.gildedrose.model.type.BackstagePass
+import com.gildedrose.model.type.Conjured
+import com.gildedrose.model.type.Sulfuras
 
-class GildedRoseRefactored(var items: List<Item>) {
+class GildedRoseRefactored {
 
-    private val regularItem = BaseItem()
-    private val agedBrie = AgedBrie()
-    private val sulfuras = Sulfuras()
-    private val backstagePass = BackstagePass()
-    private val conjured = Conjured()
-
-    fun updateQuality() {
-        items.forEach {
-            updateItem(it)
-        }
+    fun updateQuality(items: List<Item>): List<BaseItem> {
+        return items.map{updateItem(it).apply { update() }}
     }
 
-    private fun updateItem(item: Item){
-        with(item.name){
-            when {
-                contains("Aged Brie") -> agedBrie.update(item)
-                contains("Sulfuras")-> sulfuras.update(item)
-                contains("Backstage")-> backstagePass.update(item)
-                contains("Conjured")-> conjured.update(item)
-                else -> regularItem.update(item)
+    private fun updateItem(item: Item): BaseItem {
+        with(item.name) {
+            return when {
+                contains("Aged Brie") -> AgedBrie(item.name, item.sellIn, item.quality)
+                contains("Sulfuras") -> Sulfuras(item.name, item.sellIn, item.quality)
+                contains("Backstage") -> BackstagePass(item.name, item.sellIn, item.quality)
+                contains("Conjured") -> Conjured(item.name, item.sellIn, item.quality)
+                else -> BaseItem(item.name, item.sellIn, item.quality)
             }
         }
     }
