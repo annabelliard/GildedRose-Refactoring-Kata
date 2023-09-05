@@ -10,13 +10,13 @@ import com.gildedrose.model.type.Sulfuras
 
 class ItemAssignmentImpl: ItemAssignment {
     override fun assignItem(item: Item): BaseItem {
-        with(item.name) {
+        with(item) {
             return when {
-                contains("Aged Brie") -> AgedBrie(item.name, item.sellIn, item.quality)
-                contains("Sulfuras") -> Sulfuras(item.name, item.sellIn, item.quality)
-                contains("Backstage") -> BackstagePass(item.name, item.sellIn, item.quality)
-                contains("Conjured") -> Conjured(item.name, item.sellIn, item.quality)
-                else -> BaseItem(item.name, item.sellIn, item.quality)
+                name.contains("Aged Brie") -> AgedBrie(name, sellIn, quality)
+                name.contains("Sulfuras") -> Sulfuras(name, sellIn, quality)
+                name.contains("Backstage") -> BackstagePass(name, sellIn, quality)
+                name.contains("Conjured") -> Conjured(name, sellIn, quality)
+                else -> BaseItem(name, sellIn, quality)
             }
         }
     }

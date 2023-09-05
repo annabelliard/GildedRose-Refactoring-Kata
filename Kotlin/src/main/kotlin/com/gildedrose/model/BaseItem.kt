@@ -2,7 +2,7 @@ package com.gildedrose.model
 
 import com.gildedrose.config.QualityRequirements
 
-open class BaseItem(name: String, sellIn: Int, quality: Int): Item(name, sellIn, quality) {
+open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
 
     fun update() {
         updateQuality()
@@ -19,22 +19,25 @@ open class BaseItem(name: String, sellIn: Int, quality: Int): Item(name, sellIn,
     }
 
     fun checkMinMaxQuality() {
-        with(this){
-             if(quality > getMaxQuality()) { quality = getMaxQuality()}
-             if(quality < getMinQuality()) { quality = getMinQuality()}
+        with(this) {
+            if (quality > getMaxQuality()) {
+                quality = getMaxQuality()
+            }
+            if (quality < getMinQuality()) {
+                quality = getMinQuality()
+            }
         }
     }
 
-    open fun updateQuality(){
-        if(this.sellIn <= 0 ){
+    open fun updateQuality() {
+        if (this.sellIn <= 0) {
             this.quality = this.quality.minus(2)
-        }
-        else {
-            this.quality --
+        } else {
+            this.quality--
         }
     }
 
-    open fun updateSellIn(){
-        this.sellIn --
+    open fun updateSellIn() {
+        this.sellIn--
     }
 }
