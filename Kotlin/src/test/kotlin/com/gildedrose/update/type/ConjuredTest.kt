@@ -8,7 +8,7 @@ class ConjuredTest {
 
     @Test
     fun `quality degrades twice as fast`() {
-        val item = Item("foo", 5, 5)
+        val item = Item("conjured", 5, 5)
         val conjured = Conjured()
         conjured.update(item)
 
