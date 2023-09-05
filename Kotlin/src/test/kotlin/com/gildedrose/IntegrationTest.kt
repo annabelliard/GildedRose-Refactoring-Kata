@@ -8,15 +8,15 @@ class IntegrationTest {
     @Test
     fun `happy flow test`(){
         val items = prepareData()
-        val gildedRoseRefactored = GildedRoseRefactored()
-        val items1 = gildedRoseRefactored.updateQuality(items)
-        val items2 =gildedRoseRefactored.updateQuality(items1)
-        Assertions.assertEquals("Aged Brie", items2[1].name)
-        Assertions.assertEquals(2, items2[1].quality)
-        Assertions.assertEquals(0, items2[1].sellIn)
-        Assertions.assertEquals("Elixir of the Mongoose", items2[2].name)
-        Assertions.assertEquals(5, items2[2].quality)
-        Assertions.assertEquals(3, items2[2].sellIn)
+        val gildedRoseRefactored = GildedRoseRefactored(items)
+        gildedRoseRefactored.updateQuality()
+        gildedRoseRefactored.updateQuality()
+        Assertions.assertEquals("Aged Brie", gildedRoseRefactored.specifiedItems[1].name)
+        Assertions.assertEquals(2, gildedRoseRefactored.specifiedItems[1].quality)
+        Assertions.assertEquals(0, gildedRoseRefactored.specifiedItems[1].sellIn)
+        Assertions.assertEquals("Elixir of the Mongoose", gildedRoseRefactored.specifiedItems[2].name)
+        Assertions.assertEquals(5, gildedRoseRefactored.specifiedItems[2].quality)
+        Assertions.assertEquals(3, gildedRoseRefactored.specifiedItems[2].sellIn)
 
     }
 

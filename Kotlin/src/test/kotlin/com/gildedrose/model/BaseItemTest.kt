@@ -12,24 +12,24 @@ class BaseItemTest {
     @ValueSource(ints = [-1, 0])
     fun `quality degrades twice as fast after sell date`(days: Int) {
         val items = listOf( Item("foo", days, 5))
-        val gildedRose = GildedRoseRefactored()
-        val updatedList = gildedRose.updateQuality(items)
-        Assertions.assertEquals(3, updatedList[0].quality)
+        val gildedRose = GildedRoseRefactored(items)
+        gildedRose.updateQuality()
+        Assertions.assertEquals(3, gildedRose.specifiedItems[0].quality)
     }
 
     @Test
     fun `quality degrades normally before sell date`() {
         val items = listOf( Item("foo", 3, 5))
-        val gildedRose = GildedRoseRefactored()
-        val updatedList = gildedRose.updateQuality(items)
-        Assertions.assertEquals(4, updatedList[0].quality)
+        val gildedRose = GildedRoseRefactored(items)
+        gildedRose.updateQuality()
+        Assertions.assertEquals(4, gildedRose.specifiedItems[0].quality)
     }
 
     @Test
     fun `quality of an item is never negative`() {
         val items = listOf( Item("foo", 3, 0))
-        val gildedRose = GildedRoseRefactored()
-        val updatedList = gildedRose.updateQuality(items)
-        Assertions.assertEquals(0, updatedList[0].quality)
+        val gildedRose = GildedRoseRefactored(items)
+        gildedRose.updateQuality()
+        Assertions.assertEquals(0, gildedRose.specifiedItems[0].quality)
     }
 }

@@ -10,8 +10,8 @@ class ConjuredTest {
     @Test
     fun `quality degrades twice as fast`() {
         val items = listOf( Item("Conjured", 5, 5))
-        val gildedRose = GildedRoseRefactored()
-        val updatedList = gildedRose.updateQuality(items)
-        Assertions.assertEquals(3, updatedList[0].quality)
+        val gildedRose = GildedRoseRefactored(items)
+        gildedRose.updateQuality()
+        Assertions.assertEquals(3, gildedRose.specifiedItems[0].quality)
     }
 }

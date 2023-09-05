@@ -7,13 +7,19 @@ import com.gildedrose.model.type.BackstagePass
 import com.gildedrose.model.type.Conjured
 import com.gildedrose.model.type.Sulfuras
 
-class GildedRoseRefactored {
+class GildedRoseRefactored(items: List<Item>) {
 
-    fun updateQuality(items: List<Item>): List<BaseItem> {
-        return items.map{updateItem(it).apply { update() }}
+    val specifiedItems: List<BaseItem>
+
+    init {
+        this.specifiedItems = items.map { assignItem(it) }
     }
 
-    private fun updateItem(item: Item): BaseItem {
+    fun updateQuality(){
+        return specifiedItems.forEach { it.update() }
+    }
+
+    private fun assignItem(item: Item): BaseItem {
         with(item.name) {
             return when {
                 contains("Aged Brie") -> AgedBrie(item.name, item.sellIn, item.quality)
